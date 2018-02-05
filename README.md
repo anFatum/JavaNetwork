@@ -19,3 +19,24 @@ Each agent periodically, every specified time period, synchronizes its cunter va
 
 The controller
 An additional application is used as a controller of the network of agents. Using it, one can read or change the value of the counter or the synchronization period of each agent separately. The application as its first parameter acepts the the IP address of an agent.
+
+------
+
+The third Client/Server represents UDP transaction with additional options to save reliability of this protocol.
+The client is a process, which sends the data. It accepts the following parameters at
+runtime (in any order):
+• -server <address> – specifies an address, at which the server application works.
+• -port <port numer> – specifies a UDP port number, at which the server application works.
+• -file <file name> – a the name of a file for transmission.
+  
+During tranfer, the client prints out the following information about the transmission:
+• te number of delivered bytes and the number of bytes left,
+• current average speed computed from the beginning of the transfer,
+• current average speed computed during recent 10s,
+• current average speed computed during recent 1s r information about data transfer errors, if they appear.
+
+The server’s goal is to accept a connection from a client and to receive a file delivered by this client. At execution, the server accepts the following parameters (in any order):
+• -port <port numer> – specifies a UDP port number, at which the server application works.
+• -speed <initial speed>–initialdatatransferspeedexpressedinKB/s(1KB=1024B).
+  
+During work, the sever may read from the keyboard a new data transfer speed value (in KB/s). If such value is read, the server sends it to the client, which is obliged to adjust to the new value. Such changes can be done at any moment and many times during the transfer.
